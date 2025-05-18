@@ -11,9 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tasks', function (Blueprint $table) {
+        Schema::create('board_tasks', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->foreignId('board_list_id')
+                ->constrained('board_lists')
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -22,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tasks');
+        Schema::dropIfExists('board_tasks');
     }
 };
