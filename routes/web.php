@@ -3,6 +3,7 @@
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
+use App\Livewire\ViewBoard;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -12,6 +13,10 @@ Route::get('/', function () {
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
+
+Route::get('/boards/{id}', ViewBoard::class)
+    ->middleware(['auth', 'verified'])
+    ->name('boards.view');
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
