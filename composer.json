@@ -16,7 +16,9 @@
         "tightenco/ziggy": "^2.4"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^3.5",
         "fakerphp/faker": "^1.23",
+        "larastan/larastan": "^3.0",
         "laravel/pail": "^1.2.2",
         "laravel/pint": "^1.18",
         "laravel/sail": "^1.41",
@@ -64,6 +66,11 @@
         "test": [
             "@php artisan config:clear --ansi",
             "@php artisan test"
+        ],
+        "lint": [
+            "@php artisan ide-helper:models -RW",
+            "./vendor/bin/pint",
+            "./vendor/bin/phpstan analyze --memory-limit=2G"
         ]
     },
     "extra": {
